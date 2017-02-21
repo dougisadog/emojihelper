@@ -133,6 +133,7 @@
             android:drawableLeft="@drawable/sign_padding"
             android:drawablePadding="@dimen/page_drawable"
             android:gravity="right"
+            android:visibility="gone"
             android:text="@string/sign_lose"
             android:textColor="@color/blue_v2"
             android:textSize="@dimen/font_hint" />

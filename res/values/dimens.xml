@@ -55,5 +55,9 @@
     <dimen name="page_bottom_v2">15dp</dimen>  <!-- 总页面下padding -->
     <dimen name="text_top_v2">5dp</dimen>  <!-- 文字上padding -->
     <dimen name="text_bottom_v2">5dp</dimen>  <!-- 文字下padding -->
+    
+        <!-- crm -->
+     <dimen name="btn_height">40dp</dimen> 
+     <dimen name="title_width">100dp</dimen>  
 
 </resources>

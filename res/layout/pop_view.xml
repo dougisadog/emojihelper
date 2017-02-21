@@ -1,4 +1,4 @@
-<com.doug.emojihelper.widget.WrapListView xmlns:android="http://schemas.android.com/apk/res/android"
+<com.liang.emojihelper.widget.WrapListView xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/list"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"

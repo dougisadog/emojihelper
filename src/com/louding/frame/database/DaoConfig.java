@@ -15,7 +15,7 @@
  */
 package com.louding.frame.database;
 
-import com.doug.AppConstants;
+import com.liang.AppConstants;
 import com.louding.frame.KJDB.DbUpdateListener;
 import com.louding.frame.utils.KJLoger;
 

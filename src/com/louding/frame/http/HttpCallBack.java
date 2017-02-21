@@ -24,8 +24,8 @@ import android.content.Context;
 import android.widget.Toast;
 
 import com.doug.emojihelper.R;
-import com.doug.emojihelper.utils.ApplicationUtil;
-import com.doug.emojihelper.widget.LoudingDialogIOS;
+import com.liang.furniture.utils.ApplicationUtil;
+import com.liang.furniture.widget.LoudingDialogIOS;
 import com.louding.frame.utils.KJLoger;
 
 /**

@@ -2,86 +2,34 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/container"
-    android:background="@color/white"
+    android:background="@drawable/app_crm_bg"
     android:orientation="vertical" >
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal" >
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:paddingLeft="20dp"
-            android:text="标签"
-            android:textColor="@color/black_v2"
-            android:textSize="@dimen/font_hint_v2" />
-
-        <EditText
-            android:id="@+id/keywords"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_marginLeft="20dp"
-            android:layout_weight="1"
-            android:background="@null"
-            android:hint="关键词"
-            android:maxLength="9"
-            android:paddingBottom="10dp"
-            android:paddingLeft="5dp"
-            android:paddingTop="10dp"
-            android:singleLine="true"
-            android:textColor="@color/orange"
-            android:textColorHint="@color/font_hint"
-            android:textSize="@dimen/font_hint_v2" />
-
-        <Button
-            android:id="@+id/search"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:background="@color/orange"
-            android:gravity="center"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
-            android:text="搜索"
-            android:textColor="@color/white"
-            android:textSize="@dimen/font_title" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/historyContainer"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal" >
-    </LinearLayout>
-
+    
     <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/white" >
-
-        <TextView
-            android:id="@+id/limitTimeTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingLeft="20dp"
-            android:paddingTop="20dp"
-            android:text="表情包"
-            android:textColor="@color/grey_btn" />
-    </RelativeLayout>
-
-    <com.handmark.pulltorefresh.library.PullToRefreshGridView
-        android:id="@+id/emoji"
+        android:id="@+id/pagerRelative"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/limitTimeTitle"
-        android:horizontalSpacing="10dp"
-        android:numColumns="3"
-        android:stretchMode="columnWidth"
-        android:verticalSpacing="10dp" />
+        android:orientation="vertical" >
+
+        <!-- 显示TAB内容 -->
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/viewpager"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/tabwidget" />
+
+        <TabWidget
+            android:id="@+id/tabwidget"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:paddingBottom="5dp"
+            android:paddingTop="5dp"
+            android:tabStripEnabled="false" >
+        </TabWidget>
+
+    </RelativeLayout>
 
 </LinearLayout>

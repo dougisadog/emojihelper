@@ -21,12 +21,9 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 
-import com.doug.AppVariables;
-import com.doug.StartApplication;
-import com.doug.EmojiApplication;
-import com.doug.emojihelper.support.ScreenObserver.ScreenStateListener;
-import com.doug.emojihelper.ui.VerifyPwd;
-import com.doug.emojihelper.utils.ApplicationUtil;
+import com.liang.AppVariables;
+import com.liang.MyApplication;
+import com.liang.furniture.support.ScreenObserver.ScreenStateListener;
 import com.louding.frame.ui.FrameActivity;
 import com.louding.frame.ui.I_KJActivity;
 import com.louding.frame.ui.KJActivityStack;
@@ -53,8 +50,8 @@ public abstract class KJActivity extends FrameActivity implements ScreenStateLis
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         aty = this;
-        EmojiApplication.getInstance().setActivity(this);
-        EmojiApplication.getInstance().addStackActivity(this);
+        MyApplication.getInstance().setActivity(this);
+        MyApplication.getInstance().addStackActivity(this);
         KJActivityStack.create().addActivity(this);
         KJLoger.state(this.getClass().getName(), "---------onCreat ");
         super.onCreate(savedInstanceState);
@@ -70,7 +67,7 @@ public abstract class KJActivity extends FrameActivity implements ScreenStateLis
     protected void onResume() {
         super.onResume();
       //Umeng活动监听resume
-        EmojiApplication.getInstance().setCurrentRunningActivity(this);
+        MyApplication.getInstance().setCurrentRunningActivity(this);
         activityState = ActivityState.RESUME;
         KJLoger.state(this.getClass().getName(), "---------onResume ");
     }
@@ -78,8 +75,8 @@ public abstract class KJActivity extends FrameActivity implements ScreenStateLis
     @Override
     protected void onPause() {
         super.onPause();
-        if (EmojiApplication.getInstance().getCurrentRunningActivity().equals(this)) {
-            EmojiApplication.getInstance().setCurrentRunningActivity(null);
+        if (MyApplication.getInstance().getCurrentRunningActivity().equals(this)) {
+            MyApplication.getInstance().setCurrentRunningActivity(null);
         }
         activityState = ActivityState.PAUSE;
         KJLoger.state(this.getClass().getName(), "---------onPause ");

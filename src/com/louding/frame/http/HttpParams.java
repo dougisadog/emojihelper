@@ -20,21 +20,16 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
-import java.io.UnsupportedEncodingException;
 import java.util.Enumeration;
 import java.util.Hashtable;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 import org.apache.http.HttpEntity;
-import org.apache.http.client.entity.UrlEncodedFormEntity;
-import org.apache.http.client.utils.URLEncodedUtils;
-import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.louding.frame.utils.FormatUtils;
 import com.louding.frame.utils.StringUtils;
 
 /**
@@ -74,6 +69,19 @@ public class HttpParams {
      */
     public HttpParams() {
         init();
+    }
+    
+    private Object baseServerData;
+    
+    /**
+     * 构造器
+     * 
+     * <br>
+     * <b>说明</b> 为提高效率默认使用4个文件作为List大小
+     */
+    public HttpParams(Object baseServerData) {
+        init();
+        this.baseServerData = baseServerData;
     }
 
     /**
@@ -208,6 +216,9 @@ public class HttpParams {
 //    }
     
     public String toJsonString(){
+    	if (null != baseServerData) {
+    		return FormatUtils.getJson(baseServerData);
+    	}
 		Enumeration<String> em = urlParams.keys();
 		JSONObject param = new JSONObject();
 		while(em.hasMoreElements()){
