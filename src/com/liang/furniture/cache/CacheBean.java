@@ -14,7 +14,6 @@ import com.liang.furniture.bean.CItem;
 import com.liang.furniture.bean.MainAD;
 import com.liang.furniture.bean.ShopADData;
 import com.liang.furniture.bean.ShopCartData;
-import com.liang.furniture.bean.database.UPushMessage;
 import com.liang.furniture.bean.database.UserSearch;
 import com.liang.furniture.bean.jsonbean.Account;
 import com.liang.furniture.bean.jsonbean.Product;
@@ -94,9 +93,6 @@ public class CacheBean {
 	
 	private List<ShopADData> shopADDatas;
 	
-	
-	private HashMap<String, String> redConditions = new HashMap<String, String>();
-	
 	private MainAD ad; //主页广告绝对地址（图片src直接调用）
 	
 	private Map<String, ShopCartData> shopCartDatas = new HashMap<String, ShopCartData>();
@@ -125,16 +121,6 @@ public class CacheBean {
 
 	public void setApkInfo(ApkInfo apkInfo) {
 		this.apkInfo = apkInfo;
-	}
-
-
-
-	public HashMap<String, String> getRedConditions() {
-		return redConditions;
-	}
-
-	public void setRedConditions(HashMap<String, String> redConditions) {
-		this.redConditions = redConditions;
 	}
 
 

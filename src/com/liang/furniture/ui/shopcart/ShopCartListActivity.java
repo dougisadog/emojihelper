@@ -73,7 +73,7 @@ public class ShopCartListActivity extends KJActivity {
 					CacheBean.getInstance().getShopCartDatas().remove(pid);
 				}
 				else {
-					currentDatas.get(position).setAmount(amount);
+					currentDatas.get(pid).setAmount(amount);
 					CacheBean.getInstance().setShopCartDatas(currentDatas);
 				}
 				getData();

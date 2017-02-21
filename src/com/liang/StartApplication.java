@@ -14,7 +14,8 @@ import com.liang.furniture.bean.database.UserConfig;
 import com.liang.furniture.cache.CacheBean;
 import com.liang.furniture.support.InfoManager;
 import com.liang.furniture.support.InfoManager.TaskCallBack;
-import com.liang.furniture.ui.AtyMainAD;
+import com.liang.furniture.ui.MainActivity;
+import com.liang.furniture.ui.SigninActivity;
 
 public class StartApplication extends KJActivity {
 	
@@ -86,9 +87,8 @@ public class StartApplication extends KJActivity {
 	 * 无更新或者 完成更新的正常进入流程
 	 */
 	private void updateDone(boolean loginSuccess) {
-		Intent mainIntent = null;
-		mainIntent = new Intent(StartApplication.this, AtyMainAD.class);
-		mainIntent.putExtra("login", loginSuccess);
+		loginSuccess = true;
+		Intent mainIntent = new Intent(this, loginSuccess ? MainActivity.class: SigninActivity.class);
 		mainIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 		StartApplication.this.startActivity(mainIntent);
 		StartApplication.this.finish();

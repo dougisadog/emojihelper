@@ -54,7 +54,7 @@ public class SigninActivity extends KJActivity {
 	@Override
 	public void initWidget() {
 		super.initWidget();
-		UIHelper.setTitleView(this, "取消", "注册", "登录", 0);
+		UIHelper.setTitleView(this, "", "注册", "登录", 0);
 		TextView btnLeft = (TextView) findViewById(R.id.title_left);
 		btnLeft.setOnClickListener(new View.OnClickListener() {
 			@Override

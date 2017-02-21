@@ -9,7 +9,7 @@
     android:paddingRight="@dimen/page_right"
     android:paddingTop="@dimen/page_line" >
 
-    <com.nangua.xiaomanjflc.widget.FontTextView
+    <TextView
         android:id="@+id/data"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -19,7 +19,7 @@
         android:textColor="@color/font_gray"
         android:textSize="@dimen/font_app" />
 
-    <com.nangua.xiaomanjflc.widget.FontTextView
+    <TextView
         android:id="@+id/title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

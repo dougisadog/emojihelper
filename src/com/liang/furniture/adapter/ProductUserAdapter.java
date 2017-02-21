@@ -5,7 +5,6 @@ import java.util.List;
 
 import com.bumptech.glide.Glide;
 import com.liang.furniture.R;
-import com.liang.furniture.adapter.ImageGridAdapter.ItemCallBack;
 import com.liang.furniture.bean.CItem;
 import com.liang.furniture.bean.jsonbean.Product;
 
@@ -89,9 +88,8 @@ public class ProductUserAdapter extends ArrayAdapter<Product> {
 			holder.content.setText(entity.getContent().toString());
 		holder.price.setText(entity.getPrice() + "");
 		if (!TextUtils.isEmpty(entity.getPicUrl())) {
-			Glide.with(context).load(entity.getPicUrl()).into(holder.imgView);
+			Glide.with(context).load(entity.getPicUrl()).placeholder(R.drawable.image_default).into(holder.imgView);
 		}
-		Glide.with(context).load(R.drawable.icon_plus).into(holder.plus);
 		if (null != itemCallBack) {
 			holder.plus.setTag(position);
 			holder.plus.setOnClickListener(listener);
@@ -117,6 +115,12 @@ public class ProductUserAdapter extends ArrayAdapter<Product> {
 		private TextView name, content, price;
 		private ImageView imgView, plus;
 
+	}
+
+	public void setDatas(List<Product> products) {
+		this.datas = products;
+		notifyDataSetChanged();
+		
 	}
 
 }

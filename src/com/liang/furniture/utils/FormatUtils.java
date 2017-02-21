@@ -2,12 +2,17 @@ package com.liang.furniture.utils;
 
 import android.util.Log;
 
+import java.io.IOException;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.List;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonSyntaxException;
+import org.codehaus.jackson.JsonGenerationException;
+import org.codehaus.jackson.JsonParseException;
+import org.codehaus.jackson.map.DeserializationConfig.Feature;
+import org.codehaus.jackson.map.JsonMappingException;
+import org.codehaus.jackson.map.ObjectMapper;
+import org.codehaus.jackson.type.JavaType;
 
 public class FormatUtils {
 
@@ -139,6 +144,51 @@ public class FormatUtils {
 		return df.format(number);
 	}
 	
+	public static ObjectMapper mapper;
+	
+	private static ObjectMapper getMapper() {
+		if (null == mapper) {
+			mapper = new ObjectMapper();
+			//忽略未知参数的转换
+			mapper.configure(Feature.FAIL_ON_UNKNOWN_PROPERTIES, false);			
+		}
+		return mapper;
+	}
+	
+	
+	public static <T> List<T> getListJson(String json, Class<T> clazz) {
+		List<T> result = new ArrayList<T>();
+		try {
+			result = (List<T>) getMapper().readValue(json, getCollectionType(List.class, clazz));
+		} catch (JsonParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (JsonMappingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return result;
+	}
+	
+	public static JavaType getCollectionType(Class<?> collectionClass, Class<?>... elementClasses) {
+		return getMapper().getTypeFactory().constructParametricType(collectionClass, elementClasses);   
+	}  
+	
+	public static String getJson(Object o) {
+		ObjectMapper mapper = new ObjectMapper();
+		String Json = null;
+		try {
+			Json = mapper.writeValueAsString(o);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return Json;
+		}
+		return Json;
+	}
+	
 	/**
 	 * jsons数据解析成为对应类
 	 * @param json
@@ -146,16 +196,21 @@ public class FormatUtils {
 	 * @return
 	 */
 	public static <T> T jsonParse(String json, Class<T> clazz) {
-		T result;
+		T result = null;
 		try {
-			Gson gson = new GsonBuilder().create();
-			result = gson.fromJson(json, clazz);
-		} catch (JsonSyntaxException e) {
+			result = getMapper().readValue(json, clazz);
+		} catch (JsonParseException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
-			return null;
+		} catch (JsonMappingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		return result;
-		
 	}
+
 
 }

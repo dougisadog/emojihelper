@@ -4,19 +4,21 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.liang.furniture.R;
 import com.liang.AppConstants;
-import com.liang.furniture.adapter.CommonAdapter;
+import com.liang.AppTestDatas;
+import com.liang.furniture.R;
 import com.liang.furniture.adapter.ProductUserAdapter;
 import com.liang.furniture.adapter.ProductUserAdapter.ItemCallBack;
-import com.liang.furniture.adapter.ViewHolder;
 import com.liang.furniture.bean.ShopCartData;
 import com.liang.furniture.bean.jsonbean.Product;
 import com.liang.furniture.cache.CacheBean;
 import com.liang.furniture.support.UIHelper;
+import com.liang.furniture.ui.shopcart.ShopCartListActivity;
 import com.liang.furniture.utils.FormatUtils;
+import com.liang.furniture.widget.VerticalTab;
 import com.louding.frame.KJActivity;
 import com.louding.frame.KJHttp;
 import com.louding.frame.http.HttpCallBack;
@@ -37,6 +39,9 @@ public class ProductListActivity extends KJActivity {
 
 	@BindView(id = R.id.container)
 	private RelativeLayout container;
+	
+	@BindView(id = R.id.shopCart, click = true)
+	private RelativeLayout shopCart;
 
 	@BindView(id = R.id.img_right)
 	private ImageView imgRight;
@@ -44,10 +49,15 @@ public class ProductListActivity extends KJActivity {
 	@BindView(id = R.id.listview)
 	private KJListView listview;
 	
-	@BindView(id = R.id.shopCart)
-	private TextView shopCart;
+	@BindView(id = R.id.count)
+	private TextView count;
 	
 	
+	
+	private VerticalTab verticalTab;
+	
+	
+	private KJHttp kjh;
 
 	private int page = 1;
 
@@ -56,6 +66,7 @@ public class ProductListActivity extends KJActivity {
 	@Override
 	public void setRootView() {
 		setContentView(R.layout.activity_product_list);
+		kjh = new KJHttp();
 		UIHelper.setTitleView(this, "", "商品列表");
 //		UIHelper.setBtnRight(aty, R.drawable.icon_search_off, this);
 	}
@@ -68,22 +79,29 @@ public class ProductListActivity extends KJActivity {
 			case R.id.flright :
 
 				break;
+			case R.id.shopCart :
+				startActivity(new Intent(this, ShopCartListActivity.class));
+				break;
+				
 		}
 	}
 
 	private void getData(final int pageIndex) {
-//		HttpParams params = new HttpParams(dto);
-//		kjh.post(AppConstants.CUSTOMER_LIST, params, new HttpCallBack(this) {
+		List<Product> products = AppTestDatas.getProducts();
+		adapter.getDatas().addAll(products);
+		adapter.notifyDataSetChanged();
+//		HttpParams params = new HttpParams();
+//		kjh.post(AppConstants.PRODUCT_LIST, params, new HttpCallBack(this) {
 //			@Override
 //			public void success(JSONObject ret) {
 //				page = pageIndex;
-//				String users;
+//				String jsonProducts;
 //					//个人业绩相关
 //					try {
 //						
-//						users = ret.getString("users");
-//						List<Product> customerBizDtos = FormatUtils.getListJson(users, Product.class);
-//						if (null == customerBizDtos || customerBizDtos.size() == 0) {
+//						jsonProducts = ret.getString("users");
+//						List<Product> products = FormatUtils.getListJson(jsonProducts, Product.class);
+//						if (null == products || products.size() == 0) {
 //							noMoreData = true;
 //							listview.hideFooter();
 //						}
@@ -92,10 +110,10 @@ public class ProductListActivity extends KJActivity {
 //							listview.showFooter();
 //						}
 //						if (page == 1) {
-//							adapter.setList(customerBizDtos);
+//							adapter.setDatas(products);
 //						}
 //						else {
-//							adapter.getList().addAll(customerBizDtos);
+//							adapter.getDatas().addAll(products);
 //							adapter.notifyDataSetChanged();
 //						}
 //					} catch (JSONException e) {
@@ -112,10 +130,35 @@ public class ProductListActivity extends KJActivity {
 //			}
 //		});
 	}
+	
+	private void refreshCurrentPage(int position) {
+		for (int i = 0; i < verticalTab.getChildCount(); i++) {
+			TextView tv = verticalTab.getTextView(i);
+			if (null != tv) {
+				tv.setTextColor(getResources().getColor(position == i? R.color.white: R.color.black_v2));
+				tv.setBackgroundResource(position == i? R.drawable.bg_btn_common_on: R.drawable.bg_btn_common);						
+			}
+		}
+	}
 
 	@Override
 	public void initWidget() {
 		super.initWidget();
+		
+ 		verticalTab = (VerticalTab) findViewById(R.id.verticalTab);
+		final List<String> names = new ArrayList<String>();
+		names.addAll(AppTestDatas.getTypes().values());
+		verticalTab.setDatas(names, new VerticalTab.ItemCallBack() {
+
+			@Override
+			public void onItemClicked(int position) {
+				refreshCurrentPage(position);
+			}
+
+		});
+		
+		verticalTab.clickItem(0);
+		
 		adapter = new ProductUserAdapter(this);
 		adapter.setItemCallBack(new ItemCallBack() {
 			
@@ -135,11 +178,10 @@ public class ProductListActivity extends KJActivity {
 					CacheBean.getInstance().setShopCartDatas(currentDatas);
 				}
 				//类型数量
-				shopCart.setText(currentDatas.size() + "");
+				count.setText(currentDatas.size() + "");
 			}
 
 		});
-		
 		listview.setOnItemClickListener(new OnItemClickListener() {
 
 			@Override
@@ -150,7 +192,7 @@ public class ProductListActivity extends KJActivity {
 			
 		});
 		listview.setAdapter(adapter);
-		listview.setOnRefreshListener(refreshListener);
+//		listview.setOnRefreshListener(refreshListener);
 		listview.setEmptyView(findViewById(R.id.empty));
 		getData(1);
 
@@ -162,8 +204,7 @@ public class ProductListActivity extends KJActivity {
 	 */
 	private void getProductDetail(Product dto) {
 		HttpParams params = new HttpParams(dto);
-		KJHttp kjh = new KJHttp();
-		kjh.post(AppConstants.PRODUCT_LIST, params, new HttpCallBack(this) {
+		kjh.post(AppConstants.PRODUCT_DETAIL, params, new HttpCallBack(this) {
 			
 			@Override
 			public void success(JSONObject ret) {
@@ -196,5 +237,16 @@ public class ProductListActivity extends KJActivity {
 			}
 		}
 	};
+
+	@Override
+	protected void onResume() {
+		if (null != count) {
+			Map<String, ShopCartData> currentDatas = CacheBean.getInstance().getShopCartDatas();
+			count.setText(currentDatas.size() + "");
+		}
+		super.onResume();
+	}
+	
+	
 
 }
