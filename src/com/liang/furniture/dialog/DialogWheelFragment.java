@@ -3,7 +3,7 @@ package com.liang.furniture.dialog;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.doug.emojihelper.R;
+import com.liang.furniture.R;
 import com.liang.furniture.adapter.BaseTextWheelAdapter;
 
 import android.os.Bundle;

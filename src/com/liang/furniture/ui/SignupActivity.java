@@ -18,7 +18,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.doug.emojihelper.R;
+import com.liang.furniture.R;
 import com.liang.AppConstants;
 import com.liang.furniture.support.InfoManager;
 import com.liang.furniture.support.UIHelper;

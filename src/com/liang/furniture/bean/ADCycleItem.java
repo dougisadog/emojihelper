@@ -1,6 +1,6 @@
 package com.liang.furniture.bean;
 
-import com.doug.emojihelper.R;
+import com.liang.furniture.R;
 
 import android.content.Context;
 import android.view.LayoutInflater;

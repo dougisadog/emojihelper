@@ -9,7 +9,7 @@ import java.util.List;
 import com.louding.frame.KJActivity;
 import com.louding.frame.KJDB;
 import com.louding.frame.KJHttp;
-import com.doug.emojihelper.R;
+import com.liang.furniture.R;
 import com.liang.furniture.bean.database.UserConfig;
 import com.liang.furniture.cache.CacheBean;
 import com.liang.furniture.support.InfoManager;

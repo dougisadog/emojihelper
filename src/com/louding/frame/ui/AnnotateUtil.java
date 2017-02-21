@@ -22,7 +22,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.lang.reflect.Field;
 
-import com.doug.emojihelper.R;
+import com.liang.furniture.R;
 import com.liang.furniture.file.FileUtils;
 
 import android.app.Activity;

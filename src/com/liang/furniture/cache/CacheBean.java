@@ -13,6 +13,7 @@ import com.liang.AppVariables;
 import com.liang.furniture.bean.CItem;
 import com.liang.furniture.bean.MainAD;
 import com.liang.furniture.bean.ShopADData;
+import com.liang.furniture.bean.ShopCartData;
 import com.liang.furniture.bean.database.UPushMessage;
 import com.liang.furniture.bean.database.UserSearch;
 import com.liang.furniture.bean.jsonbean.Account;
@@ -98,8 +99,7 @@ public class CacheBean {
 	
 	private MainAD ad; //主页广告绝对地址（图片src直接调用）
 	
-	//Integer 类型
-	private Map<Integer, List<Product>> products = new HashMap<Integer, List<Product>>();
+	private Map<String, ShopCartData> shopCartDatas = new HashMap<String, ShopCartData>();
 	
 	//现金券背景bitmap缓存
 	public User getUser() {
@@ -178,12 +178,12 @@ public class CacheBean {
 		this.currentItems = currentItems;
 	}
 
-	public Map<Integer, List<Product>> getProducts() {
-		return products;
+	public Map<String, ShopCartData> getShopCartDatas() {
+		return shopCartDatas;
 	}
 
-	public void setProducts(Map<Integer, List<Product>> products) {
-		this.products = products;
+	public void setShopCartDatas(Map<String, ShopCartData> shopCartDatas) {
+		this.shopCartDatas = shopCartDatas;
 	}
 
 

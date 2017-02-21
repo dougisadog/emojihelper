@@ -5,7 +5,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import com.bumptech.glide.Glide;
-import com.doug.emojihelper.R;
+import com.liang.furniture.R;
 import com.liang.furniture.bean.MainAD;
 import com.liang.furniture.cache.CacheBean;
 import com.liang.furniture.utils.ImageUtils;

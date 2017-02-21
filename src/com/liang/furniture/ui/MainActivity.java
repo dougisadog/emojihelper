@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import com.doug.emojihelper.R;
+import com.liang.furniture.R;
 import com.liang.AppConfig;
 import com.liang.AppVariables;
 import com.liang.MyApplication;

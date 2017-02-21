@@ -1,12 +1,10 @@
 package com.liang.furniture.widget;
 
-import com.doug.emojihelper.R;
-import com.doug.emojihelper.R.color;
+import com.liang.furniture.R;
+import com.liang.furniture.R.color;
 
 import android.content.Context;
-import android.content.res.TypedArray;
 import android.graphics.drawable.ColorDrawable;
-import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.AttributeSet;

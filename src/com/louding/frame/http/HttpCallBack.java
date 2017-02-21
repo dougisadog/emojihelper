@@ -23,7 +23,7 @@ import org.json.JSONObject;
 import android.content.Context;
 import android.widget.Toast;
 
-import com.doug.emojihelper.R;
+import com.liang.furniture.R;
 import com.liang.furniture.utils.ApplicationUtil;
 import com.liang.furniture.widget.LoudingDialogIOS;
 import com.louding.frame.utils.KJLoger;

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.doug.emojihelper"
+    package="com.liang.furniture"
     android:versionCode="10000"
     android:versionName="1.0.0" >
 
@@ -45,28 +45,43 @@
             </intent-filter>
         </activity>
         <activity
-            android:name = "com.liang.furniture.ui.MainActivity"
+            android:name="com.liang.furniture.ui.MainActivity"
             android:launchMode="standard"
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name = "com.liang.furniture.ui.AtyMainAD"
+            android:name="com.liang.furniture.ui.AtyMainAD"
             android:launchMode="standard"
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name = "com.liang.furniture.ui.SignupActivity"
+            android:name="com.liang.furniture.ui.SignupActivity"
             android:launchMode="standard"
             android:screenOrientation="portrait" />
         <activity
-            android:name = "com.liang.furniture.ui.SigninActivity"
+            android:name="com.liang.furniture.ui.SigninActivity"
             android:launchMode="standard"
             android:screenOrientation="portrait" />
         <activity
-            android:name = "com.liang.furniture.ui.PasswordActivity"
+            android:name="com.liang.furniture.ui.PasswordActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />
-
+        <activity
+            android:name="com.liang.furniture.ui.product.ProductDetailActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.liang.furniture.ui.product.ProductListActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.liang.furniture.ui.shopcart.ShopCartListActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+                <activity
+            android:name="com.liang.furniture.ui.anno.AnnoActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

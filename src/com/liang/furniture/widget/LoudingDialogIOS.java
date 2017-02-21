@@ -1,6 +1,6 @@
 package com.liang.furniture.widget;
 
-import com.doug.emojihelper.R;
+import com.liang.furniture.R;
 
 import android.app.Activity;
 import android.content.Context;

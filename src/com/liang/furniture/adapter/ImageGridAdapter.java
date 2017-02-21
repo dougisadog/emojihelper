@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.bumptech.glide.Glide;
-import com.doug.emojihelper.R;
+import com.liang.furniture.R;
 import com.liang.furniture.bean.CItem;
 import com.louding.frame.utils.DensityUtils;
 

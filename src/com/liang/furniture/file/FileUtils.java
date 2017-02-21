@@ -20,7 +20,7 @@ import java.util.List;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 
-import com.doug.emojihelper.R;
+import com.liang.furniture.R;
 import com.liang.MyApplication;
 import com.liang.furniture.error.DebugPrinter;
 

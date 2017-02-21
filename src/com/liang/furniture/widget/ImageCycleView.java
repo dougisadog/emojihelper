@@ -2,7 +2,7 @@ package com.liang.furniture.widget;
 
 import java.util.ArrayList;
 
-import com.doug.emojihelper.R;
+import com.liang.furniture.R;
 
 import android.content.Context;
 import android.os.Handler;

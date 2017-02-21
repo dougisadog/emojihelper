@@ -16,7 +16,7 @@
             android:paddingRight="@dimen/page_right_v2" >
 
             <RelativeLayout
-                android:id="@+id/rlCustomer"
+                android:id="@+id/rlShopCart"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/btn_height"
                 android:layout_marginTop="2dp"
@@ -47,7 +47,7 @@
             </RelativeLayout>
 
             <RelativeLayout
-                android:id="@+id/rlInvest"
+                android:id="@+id/rlAnno"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/btn_height"
                 android:layout_marginTop="12dp"
@@ -78,7 +78,7 @@
             </RelativeLayout>
 
             <RelativeLayout
-                android:id="@+id/rlPersonData"
+                android:id="@+id/rlProduct"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/btn_height"
                 android:layout_marginTop="12dp"
@@ -109,7 +109,7 @@
             </RelativeLayout>
 
             <RelativeLayout
-                android:id="@+id/rlMessage"
+                android:id="@+id/rlSolution"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/btn_height"
                 android:layout_marginTop="12dp"

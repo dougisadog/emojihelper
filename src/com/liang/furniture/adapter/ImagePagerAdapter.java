@@ -5,7 +5,7 @@ import java.util.List;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.doug.emojihelper.R;
+import com.liang.furniture.R;
 import com.liang.furniture.bean.CItem;
 import com.liang.furniture.widget.ZoomImageView;
 import com.liang.furniture.widget.ZoomImageView.LongPressCallBack;

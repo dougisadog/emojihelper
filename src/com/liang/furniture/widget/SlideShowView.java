@@ -28,7 +28,7 @@ import android.widget.ImageView.ScaleType;
 import android.widget.LinearLayout;
 
 import com.bumptech.glide.Glide;
-import com.doug.emojihelper.R;
+import com.liang.furniture.R;
 import com.liang.AppConstants;
 import com.louding.frame.KJHttp;
 import com.louding.frame.http.HttpCallBack;

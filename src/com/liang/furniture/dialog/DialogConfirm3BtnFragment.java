@@ -1,6 +1,6 @@
 package com.liang.furniture.dialog;
 
-import com.doug.emojihelper.R;
+import com.liang.furniture.R;
 
 import android.app.Dialog;
 import android.content.DialogInterface;

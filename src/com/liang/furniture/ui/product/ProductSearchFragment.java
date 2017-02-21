@@ -1,6 +1,6 @@
 package com.liang.furniture.ui.product;
 
-import com.doug.emojihelper.R;
+import com.liang.furniture.R;
 import com.liang.furniture.dialog.DialogAlertFragment.CallBackDialogConfirm;
 import com.liang.furniture.dialog.DialogWheelFragment;
 import com.liang.furniture.ui.myabstract.BaseSearchFragment;

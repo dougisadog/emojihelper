@@ -4,7 +4,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.bumptech.glide.Glide;
-import com.doug.emojihelper.R;
+import com.liang.furniture.R;
 import com.liang.AppConstants;
 import com.liang.furniture.bean.jsonbean.Product;
 import com.liang.furniture.support.UIHelper;

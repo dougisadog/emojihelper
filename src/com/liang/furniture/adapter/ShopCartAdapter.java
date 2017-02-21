@@ -5,8 +5,7 @@ import java.util.List;
 
 import com.bumptech.glide.Glide;
 import com.liang.furniture.R;
-import com.liang.furniture.adapter.ImageGridAdapter.ItemCallBack;
-import com.liang.furniture.bean.CItem;
+import com.liang.furniture.bean.ShopCartData;
 import com.liang.furniture.bean.jsonbean.Product;
 
 import android.content.Context;
@@ -20,10 +19,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 
-public class ProductUserAdapter extends ArrayAdapter<Product> {
+public class ShopCartAdapter extends ArrayAdapter<ShopCartData> {
 	
 	private LayoutInflater mInflater;// 得到一个LayoutInfalter对象用来导入布局
-	private List<Product> datas = new ArrayList<Product>();
+	private List<ShopCartData> datas = new ArrayList<ShopCartData>();
 	
     private ItemCallBack itemCallBack;
     
@@ -32,17 +31,17 @@ public class ProductUserAdapter extends ArrayAdapter<Product> {
     }
     
     public interface ItemCallBack {
-    	public void onPlusClick(int position, Product item);
+    	public void onMinusClick(int position, ShopCartData item);
     }
 	
 	private Context context;
-	public ProductUserAdapter(Context context) {
+	public ShopCartAdapter(Context context) {
 		super(context, 0);
 		this.mInflater = LayoutInflater.from(context);
 		this.context = context;
 	}
 	
-	public ProductUserAdapter(Context context, int resource) {
+	public ShopCartAdapter(Context context, int resource) {
 		super(context, resource);
 		this.mInflater = LayoutInflater.from(context);
 	}
@@ -53,7 +52,7 @@ public class ProductUserAdapter extends ArrayAdapter<Product> {
 	}
 
 	@Override
-	public Product getItem(int position) {
+	public ShopCartData getItem(int position) {
 		return datas.get(position);
 	}
 
@@ -65,24 +64,24 @@ public class ProductUserAdapter extends ArrayAdapter<Product> {
 	/** 书中详细解释该方法 */
 	@Override
 	public View getView(final int position, View convertView, ViewGroup parent) {
-		ProductViewHolder holder = null;
+		ShopCartDataViewHolder holder = null;
 		if (null == convertView) {
 			convertView = mInflater.inflate(R.layout.item_product, null, true);
-			holder = new ProductViewHolder();
+			holder = new ShopCartDataViewHolder();
 			holder.name = (TextView) convertView.findViewById(R.id.name);
 			holder.content = (TextView) convertView.findViewById(R.id.content);
 			holder.price = (TextView) convertView.findViewById(R.id.price);
 			holder.imgView = (ImageView) convertView.findViewById(R.id.imgView);
-			holder.plus = (ImageView) convertView.findViewById(R.id.plus);
+			holder.minus = (ImageView) convertView.findViewById(R.id.plus);
 			convertView.setTag(holder);
 		} 
 		else {
-			holder = (ProductViewHolder) convertView.getTag();
+			holder = (ShopCartDataViewHolder) convertView.getTag();
 		}
 		
 		holder.price.setVisibility(View.GONE);
 		
-		Product entity = datas.get(position);
+		Product entity = datas.get(position).getProduct();
 		if (!TextUtils.isEmpty(entity.getName()))
 			holder.name.setText(entity.getName().toString());
 		if (!TextUtils.isEmpty(entity.getContent()))
@@ -91,10 +90,10 @@ public class ProductUserAdapter extends ArrayAdapter<Product> {
 		if (!TextUtils.isEmpty(entity.getPicUrl())) {
 			Glide.with(context).load(entity.getPicUrl()).into(holder.imgView);
 		}
-		Glide.with(context).load(R.drawable.icon_plus).into(holder.plus);
+		Glide.with(context).load(R.drawable.icon_minus).into(holder.minus);
 		if (null != itemCallBack) {
-			holder.plus.setTag(position);
-			holder.plus.setOnClickListener(listener);
+			holder.minus.setTag(position);
+			holder.minus.setOnClickListener(listener);
 		}
 		return convertView;
 	}
@@ -104,18 +103,23 @@ public class ProductUserAdapter extends ArrayAdapter<Product> {
 		@Override
 		public void onClick(View v) {
 			int position = Integer.parseInt(v.getTag().toString());
-			itemCallBack.onPlusClick(position, datas.get(position));
+			itemCallBack.onMinusClick(position, datas.get(position));
 		}
 	};
 	
-	public List<Product> getDatas() {
+	public List<ShopCartData> getDatas() {
 		return datas;
 	}
 	
-	public final class ProductViewHolder {
+	public void setDatas(List<ShopCartData> datas) {
+		this.datas = datas;
+		notifyDataSetChanged();
+	}
+	
+	public final class ShopCartDataViewHolder {
 		
 		private TextView name, content, price;
-		private ImageView imgView, plus;
+		private ImageView imgView, minus;
 
 	}
 

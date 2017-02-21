@@ -2,15 +2,17 @@ package com.liang.furniture.ui.product;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.json.JSONObject;
 
-import com.doug.emojihelper.R;
+import com.liang.furniture.R;
 import com.liang.AppConstants;
 import com.liang.furniture.adapter.CommonAdapter;
 import com.liang.furniture.adapter.ProductUserAdapter;
 import com.liang.furniture.adapter.ProductUserAdapter.ItemCallBack;
 import com.liang.furniture.adapter.ViewHolder;
+import com.liang.furniture.bean.ShopCartData;
 import com.liang.furniture.bean.jsonbean.Product;
 import com.liang.furniture.cache.CacheBean;
 import com.liang.furniture.support.UIHelper;
@@ -119,20 +121,23 @@ public class ProductListActivity extends KJActivity {
 			
 			@Override
 			public void onPlusClick(int position, Product item) {
-				List<Product> typeProducts = CacheBean.getInstance().getProducts().get(item.getType());
-				if (null == typeProducts) {
-					typeProducts = new ArrayList<Product>(); 
+				Map<String, ShopCartData> currentDatas = CacheBean.getInstance().getShopCartDatas();
+				String pid = item.getPid();
+				if (currentDatas.containsKey(pid)) {
+					currentDatas.get(pid).setAmount(currentDatas.get(pid).getAmount() + 1);
 				}
-				typeProducts.add(item);
-				CacheBean.getInstance().getProducts().put(item.getType(), typeProducts);
-				shopCart.setText(typeProducts.size() + "");
+				else {
+					ShopCartData shopCartData = new ShopCartData();
+					shopCartData.setAmount(1);
+					shopCartData.setProduct(item);
+					shopCartData.setPrice(item.getPrice());
+					currentDatas.put(pid, shopCartData);
+					CacheBean.getInstance().setShopCartDatas(currentDatas);
+				}
+				//类型数量
+				shopCart.setText(currentDatas.size() + "");
 			}
 
-			@Override
-			public void onMinusClick(int position, Product item) {
-				// TODO Auto-generated method stub
-				
-			}
 		});
 		
 		listview.setOnItemClickListener(new OnItemClickListener() {

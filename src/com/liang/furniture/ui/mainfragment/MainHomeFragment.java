@@ -1,6 +1,6 @@
 package com.liang.furniture.ui.mainfragment;
 
-import com.doug.emojihelper.R;
+import com.liang.furniture.R;
 import com.liang.furniture.ui.myabstract.HomeFragment;
 import com.louding.frame.KJHttp;
 import android.os.Bundle;

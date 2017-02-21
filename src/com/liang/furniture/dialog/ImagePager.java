@@ -3,7 +3,7 @@ package com.liang.furniture.dialog;
 import java.util.HashMap;
 import java.util.List;
 
-import com.doug.emojihelper.R;
+import com.liang.furniture.R;
 import com.liang.furniture.adapter.ImagePagerAdapter;
 import com.liang.furniture.bean.CItem;
 import com.liang.furniture.cache.CacheBean;

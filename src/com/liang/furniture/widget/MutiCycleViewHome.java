@@ -8,7 +8,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.doug.emojihelper.R;
+import com.liang.furniture.R;
 import com.liang.AppConstants;
 import com.liang.furniture.bean.ADCycleItem;
 import com.liang.furniture.bean.CycleData;
